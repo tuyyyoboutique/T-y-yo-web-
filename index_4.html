@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tú y Yo Boutique — Moda mujer y hombre</title>
+<style>
+  :root{
+    --cream:#F7F1E6;
+    --ink:#1C1A16;
+    --gold:#B4863A;
+    --gold-soft:#D9C08F;
+    --blush:#EDE2CE;
+    --white:#FFFEFB;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Georgia', 'Times New Roman', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .script{font-family:'Brush Script MT','Segoe Script', cursive; font-weight:400;}
+  .sans{font-family:'Helvetica Neue', Arial, sans-serif;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* TOP BAR */
+  .topbar{
+    background:var(--ink); color:var(--gold-soft);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12px; letter-spacing:0.05em;
+  }
+  .topbar .wrap{
+    display:flex; justify-content:space-between; align-items:center; height:36px; flex-wrap:wrap;
+  }
+  .topbar .socials{display:flex; gap:18px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--cream);
+    border-bottom:1px solid var(--gold-soft);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:78px;}
+  .logo-block{display:flex; flex-direction:column; line-height:1;}
+  .logo-block .l1{font-size:15px; letter-spacing:0.3em; font-weight:600;}
+  .logo-block .l2{font-family:'Brush Script MT','Segoe Script',cursive; font-size:28px; margin-top:-2px;}
+  .navlinks{
+    display:flex; gap:32px; font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600;
+  }
+  .navlinks a{border-bottom:1px solid transparent; padding-bottom:4px; transition:border-color .15s;}
+  .navlinks a:hover{border-color:var(--gold);}
+  #cart-btn{
+    background:none; border:1px solid var(--ink); color:var(--ink);
+    padding:9px 18px; font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+    cursor:pointer; display:flex; align-items:center; gap:8px; border-radius:1px;
+    transition:background .15s, color .15s;
+  }
+  #cart-btn:hover{background:var(--ink); color:var(--cream);}
+  #cart-count{
+    background:var(--gold); color:var(--white); border-radius:999px;
+    width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:10px;
+  }
+
+  /* HERO */
+  .hero{position:relative; border-bottom:1px solid var(--gold-soft); overflow:hidden;}
+  .hero .wrap{padding:80px 24px 70px; text-align:center; display:flex; flex-direction:column; align-items:center;}
+  .hero .globe{
+    width:64px; height:64px; border-radius:50%; border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center; margin-bottom:26px;
+    position:relative;
+  }
+  .hero .globe:before{
+    content:"✈"; color:var(--gold); font-size:20px; transform:rotate(20deg);
+  }
+  .hero h1{
+    font-size:clamp(38px,7vw,64px); font-weight:400; letter-spacing:0.02em; margin-bottom:6px;
+  }
+  .hero .script-line{
+    font-family:'Brush Script MT','Segoe Script',cursive; font-size:clamp(46px,9vw,86px);
+    color:var(--gold); line-height:1; margin-bottom:20px;
+  }
+  .hero p.tag{
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--ink); opacity:.7; margin-bottom:34px;
+  }
+  .btn-primary{
+    display:inline-block; background:var(--ink); color:var(--cream);
+    padding:15px 34px; font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase;
+    border:1px solid var(--ink); transition:background .15s, color .15s;
+  }
+  .btn-primary:hover{background:transparent; color:var(--ink);}
+
+  /* CATEGORY TABS */
+  .tabs{
+    display:flex; justify-content:center; gap:0; border-bottom:1px solid var(--gold-soft);
+    background:var(--white);
+  }
+  .tab{
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:12px; font-weight:600;
+    letter-spacing:0.14em; text-transform:uppercase; padding:18px 30px; cursor:pointer;
+    border-bottom:2px solid transparent; color:var(--ink); opacity:.55; transition:opacity .15s, border-color .15s;
+    background:none;
+  }
+  .tab.active{opacity:1; border-color:var(--gold);}
+
+  /* SECTION HEAD */
+  .section-head{ text-align:center; padding:52px 0 30px; }
+  .section-head .eyebrow{margin-bottom:10px; display:block;}
+  .section-head h2{font-size:clamp(26px,4vw,38px); font-weight:400;}
+
+  /* GRID */
+  .grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
+    max-width:1180px; margin:0 auto; padding:0 24px 60px;
+  }
+  .card{
+    background:var(--white); border:1px solid var(--gold-soft);
+    display:flex; flex-direction:column;
+  }
+  .swatch{
+    aspect-ratio:3/4; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .swatch .initials{
+    font-family:'Georgia',serif; font-size:38px; color:rgba(255,255,255,.9); font-style:italic;
+  }
+  .swatch .cat-badge{
+    position:absolute; top:10px; left:10px; background:var(--white); color:var(--ink);
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:10px; font-weight:600;
+    letter-spacing:0.08em; text-transform:uppercase; padding:4px 8px;
+  }
+  .video-btn{
+    position:absolute; bottom:10px; right:10px; background:rgba(28,26,22,.85); color:var(--white);
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:10px; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase; padding:6px 10px; border:none;
+    display:flex; align-items:center; gap:5px; cursor:pointer;
+  }
+  .video-btn:before{content:"▶"; font-size:8px;}
+  .card-info{padding:16px 18px 18px;}
+  .card-info .pname{font-size:15px; margin-bottom:3px;}
+  .card-info .pdesc{
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:11.5px; color:#8A8270; margin-bottom:12px;
+  }
+  .price-row{display:flex; justify-content:space-between; align-items:center;}
+  .price{font-size:16px;}
+  .add-btn{
+    border:1px solid var(--ink); background:none;
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase; padding:7px 12px; cursor:pointer;
+    transition:background .15s, color .15s;
+  }
+  .add-btn:hover{background:var(--ink); color:var(--white);}
+
+  /* SOCIAL STRIP */
+  .social-strip{background:var(--ink); color:var(--cream); border-top:1px solid var(--gold-soft);}
+  .social-strip .wrap{
+    display:flex; justify-content:center; gap:48px; padding:26px 24px; flex-wrap:wrap;
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px; letter-spacing:0.05em;
+  }
+  .social-strip .item{display:flex; align-items:center; gap:8px;}
+  .social-strip .item b{color:var(--gold-soft);}
+
+  /* MANIFESTO */
+  .manifesto{border-top:1px solid var(--gold-soft); border-bottom:1px solid var(--gold-soft);}
+  .manifesto .wrap{padding:60px 24px; text-align:center; max-width:640px;}
+  .manifesto .script-line{
+    font-family:'Brush Script MT','Segoe Script',cursive; color:var(--gold); font-size:clamp(30px,5vw,44px); margin-bottom:14px;
+  }
+  .manifesto p{
+    font-family:'Helvetica Neue', Arial, sans-serif; font-size:13.5px; line-height:1.7; color:#5c5648;
+  }
+
+  /* FOOTER */
+  footer{padding:36px 0 30px;}
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+  }
+  footer .fnote{font-size:11.5px; color:#8A8270;}
+  .foot-links{display:flex; gap:20px; font-size:11.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* CART DRAWER (reuse pattern) */
+  .overlay{position:fixed; inset:0; background:rgba(28,26,22,.5); z-index:90; opacity:0; pointer-events:none; transition:opacity .2s;}
+  .overlay.open{opacity:1; pointer-events:auto;}
+  .drawer{
+    position:fixed; top:0; right:0; height:100%; width:min(400px,92vw);
+    background:var(--cream); border-left:1px solid var(--gold-soft); z-index:95;
+    transform:translateX(100%); transition:transform .25s ease; display:flex; flex-direction:column;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{display:flex; justify-content:space-between; align-items:center; padding:22px; border-bottom:1px solid var(--gold-soft);}
+  .drawer-head h3{font-family:'Georgia',serif; font-size:20px; font-weight:400;}
+  #close-cart{background:none; border:none; font-size:22px; cursor:pointer; line-height:1;}
+  .drawer-items{flex:1; overflow-y:auto; padding:6px 22px;}
+  .drawer-item{display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--blush); align-items:center;}
+  .mini-swatch{width:54px; height:54px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:16px; color:#fff; font-style:italic; font-family:'Georgia',serif;}
+  .drawer-item-info{flex:1;}
+  .drawer-item-info .n{font-size:12.5px; font-weight:600;}
+  .drawer-item-info .p{font-size:11.5px; color:#8A8270;}
+  .remove{background:none; border:none; text-decoration:underline; font-size:10.5px; cursor:pointer; color:#8A8270;}
+  .drawer-empty{padding:40px 0; text-align:center; font-size:12.5px; color:#8A8270;}
+  .drawer-foot{border-top:1px solid var(--gold-soft); padding:20px 22px;}
+  .total-row{display:flex; justify-content:space-between; font-size:14px; font-weight:600; margin-bottom:14px; text-transform:uppercase;}
+  .checkout-btn{
+    width:100%; background:var(--ink); color:var(--cream); border:1px solid var(--ink);
+    padding:14px; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer;
+    transition:background .15s, color .15s;
+  }
+  .checkout-btn:hover{background:transparent; color:var(--ink);}
+  .demo-flag{font-size:10px; text-align:center; color:#8A8270; margin-top:10px;}
+
+  /* VIDEO MODAL */
+  .video-overlay{
+    position:fixed; inset:0; background:rgba(28,26,22,.85); z-index:110;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .2s;
+  }
+  .video-overlay.open{opacity:1; pointer-events:auto;}
+  .video-modal{
+    width:min(360px,88vw); aspect-ratio:9/16; background:var(--ink);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    position:relative; border:1px solid var(--gold-soft);
+  }
+  .video-modal .placeholder-txt{
+    color:var(--gold-soft); font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase; text-align:center; padding:0 30px;
+  }
+  .video-modal .play-icon{font-size:38px; color:var(--gold-soft); margin-bottom:16px;}
+  .close-video{
+    position:absolute; top:-38px; right:0; background:none; border:none;
+    color:var(--cream); font-size:26px; cursor:pointer;
+  }
+
+  @media (max-width: 860px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .navlinks{display:none;}
+    .manifesto .wrap{padding:48px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){ * { scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>MODA QUE CONECTA CONTIGO</span>
+    <div class="socials">
+      <a href="https://www.tiktok.com/@tuyyoboutique?_r=1&_t=ZN-98nQIbaA2Pm" target="_blank" rel="noopener" style="color:inherit;">TikTok @tuyyoboutique</a>
+      <a href="https://www.instagram.com/_tuyyoboutique_?igsh=MmZqanN6aHFsYzFj" target="_blank" rel="noopener" style="color:inherit;">Instagram @_tuyyoboutique_</a>
+      <a href="https://www.facebook.com/share/19Ge53xtMj/?mibextid=wwXIfr" target="_blank" rel="noopener" style="color:inherit;">Facebook</a>
+      <span>WhatsApp 640 907 326</span>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <div class="logo-block">
+      <img src="tuyyo-logo.png" alt="Tú y Yo Boutique" style="height:56px; width:auto; display:block; border-radius:50%;">
+    </div>
+    <div class="navlinks">
+      <a href="#coleccion">Colección</a>
+      <a href="#manifiesto">Nosotros</a>
+    </div>
+    <button id="cart-btn" onclick="toggleCart(true)">Bolsa <span id="cart-count">0</span></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="tuyyo-cabecera.jpg" alt="Tú y Yo Boutique — Moda mujer y hombre" style="width:100%; max-width:none; height:auto; display:block;">
+  <div class="wrap" style="padding:0;">
+    <div style="text-align:center; padding:34px 24px 60px;">
+      <a href="#coleccion" class="btn-primary">Ver colección</a>
+    </div>
+  </div>
+</section>
+
+<div class="tabs">
+  <button class="tab active" onclick="filterCat('todos', this)">Todos</button>
+  <button class="tab" onclick="filterCat('mujer', this)">Mujer</button>
+  <button class="tab" onclick="filterCat('hombre', this)">Hombre</button>
+</div>
+
+<div class="wrap">
+  <div class="section-head" id="coleccion">
+    <span class="eyebrow">Nueva colección</span>
+    <h2>Piezas para él y para ella</h2>
+  </div>
+</div>
+
+<div class="grid" id="product-grid"></div>
+
+<section class="social-strip">
+  <div class="wrap">
+    <div class="item"><b>TikTok</b> <a href="https://www.tiktok.com/@tuyyoboutique?_r=1&_t=ZN-98nQIbaA2Pm" target="_blank" rel="noopener" style="color:inherit;">@tuyyoboutique</a></div>
+    <div class="item"><b>Instagram</b> <a href="https://www.instagram.com/_tuyyoboutique_?igsh=MmZqanN6aHFsYzFj" target="_blank" rel="noopener" style="color:inherit;">@_tuyyoboutique_</a></div>
+    <div class="item"><b>Facebook</b> <a href="https://www.facebook.com/share/19Ge53xtMj/?mibextid=wwXIfr" target="_blank" rel="noopener" style="color:inherit;">Tú y Yo Boutique</a></div>
+    <div class="item"><b>WhatsApp</b> 640 907 326</div>
+  </div>
+</section>
+
+<section class="manifesto" id="manifiesto">
+  <div class="wrap">
+    <div class="script-line">Tú y Yo</div>
+    <p>Somos una boutique de moda para mujer y hombre que nace de la cercanía: tu estilo, tu esencia, nuestra pasión.</p>
+  </div>
+</section>
+
+<section class="wrap" id="envios" style="padding:50px 24px; text-align:center;">
+  <span class="eyebrow">Información</span>
+  <h2 style="font-size:clamp(24px,3.5vw,32px); font-weight:400; margin-top:10px;">Envíos</h2>
+  <div class="sans" style="font-size:14px; color:#4A4636; max-width:420px; margin:20px auto 0; line-height:1.9;">
+    <p>Envío estándar (Península): <strong>5,00 €</strong> — gratis a partir de 60 € de compra</p>
+    <p>Envío a Canarias: <strong>12,00 €</strong></p>
+    <p>Envío a Baleares: <strong>10,00 €</strong></p>
+    <p>Envío a Ceuta y Melilla: <strong>10,00 €</strong></p>
+    <p style="margin-top:14px; font-size:12.5px; color:#8A8270;">¿Tienes ya un paquete pendiente y quieres añadir otro artículo? Escríbenos por WhatsApp para acumular tu pedido en un mismo envío.</p>
+  </div>
+</section>
+
+<section class="wrap" id="devoluciones" style="padding:50px 24px; text-align:center;">
+  <span class="eyebrow">Información</span>
+  <h2 style="font-size:clamp(24px,3.5vw,32px); font-weight:400; margin-top:10px;">Devoluciones</h2>
+  <div class="sans" style="font-size:14px; color:#4A4636; max-width:440px; margin:20px auto 0; line-height:1.9;">
+    <p>Dispones de <strong>15 días</strong> para devolver cualquier prenda comprada en tienda.</p>
+    <p>La recogida tiene un coste de <strong>5,00 €</strong> y el nuevo envío (si procede cambio) otros <strong>5,00 €</strong> — siempre dentro de la Península.</p>
+    <p>Los artículos <strong>rebajados o en liquidación no admiten devolución</strong>.</p>
+    <p style="margin-top:14px; font-size:12.5px; color:#8A8270;">Toda devolución o incidencia debe comunicarse por WhatsApp al 640 907 326.</p>
+  </div>
+</section>
+
+<section class="wrap" id="contacto" style="padding:50px 24px; text-align:center;">
+  <span class="eyebrow">Información</span>
+  <h2 style="font-size:clamp(24px,3.5vw,32px); font-weight:400; margin-top:10px;">Contacto</h2>
+  <div class="sans" style="font-size:14px; color:#4A4636; max-width:420px; margin:20px auto 0; line-height:1.9;">
+    <p><a href="https://wa.me/34640907326" style="color:var(--ink); font-weight:600;">WhatsApp — 640 907 326</a></p>
+    <p><a href="mailto:tuyyoboutique2@gmail.com" style="color:var(--ink); font-weight:600;">tuyyoboutique2@gmail.com</a></p>
+    <p><a href="https://www.instagram.com/_tuyyoboutique_?igsh=MmZqanN6aHFsYzFj" target="_blank" rel="noopener" style="color:var(--ink); font-weight:600;">Instagram — @_tuyyoboutique_</a></p>
+    <p><a href="https://www.tiktok.com/@tuyyoboutique?_r=1&_t=ZN-98nQIbaA2Pm" target="_blank" rel="noopener" style="color:var(--ink); font-weight:600;">TikTok — @tuyyoboutique</a></p>
+    <p><a href="https://www.facebook.com/share/19Ge53xtMj/?mibextid=wwXIfr" target="_blank" rel="noopener" style="color:var(--ink); font-weight:600;">Facebook — Tú y Yo Boutique</a></p>
+  </div>
+</section>
+
+<section class="wrap" id="terminos" style="padding:50px 24px 60px; text-align:left; max-width:760px;">
+  <div style="text-align:center;">
+    <span class="eyebrow">Información</span>
+    <h2 style="font-size:clamp(24px,3.5vw,32px); font-weight:400; margin-top:10px; margin-bottom:30px;">Términos y condiciones de venta</h2>
+  </div>
+  <div class="sans" style="font-size:13.5px; color:#4A4636; line-height:1.8;">
+
+    <h3 style="font-family:Georgia,serif; font-weight:400; font-size:17px; color:var(--ink); margin:26px 0 10px;">1. Información general</h3>
+    <p>En cumplimiento del deber de información, se facilitan los siguientes datos del titular del sitio web:</p>
+    <p>Titular: Enrique Manuel Fernández Ferreira<br>
+    DNI: 49025766R<br>
+    Domicilio: Avenida Bellavista, Edificio Vista Bella, Portal 4, 3º A, CP 41014, Sevilla, España.<br>
+    Email de contacto: tuyyoboutique2@gmail.com</p>
+
+    <h3 style="font-family:Georgia,serif; font-weight:400; font-size:17px; color:var(--ink); margin:26px 0 10px;">2. Envíos y plazos de entrega</h3>
+    <p>Realizamos envíos a todo el territorio nacional con los siguientes costes y plazos:</p>
+    <p>Península: 5 € (Plazo de entrega de 24 a 48 horas laborables).<br>
+    Baleares: 10 € (Plazo de entrega de 24 a 48 horas laborables).<br>
+    Canarias: 12 € (Plazo de entrega de 24 a 48 horas laborables).<br>
+    Ceuta y Melilla: 10 € (Plazo de entrega de 24 a 48 horas laborables).</p>
+    <p>Nota: Los plazos de entrega son aproximados y cuentan a partir del momento en que el pedido sale de nuestros almacenes.</p>
+
+    <h3 style="font-family:Georgia,serif; font-weight:400; font-size:17px; color:var(--ink); margin:26px 0 10px;">3. Aduanas e impuestos para Canarias, Ceuta y Melilla</h3>
+    <p>Los gastos de envío indicados para Canarias, Ceuta y Melilla cubren únicamente el transporte de la mercancía. Todos los gastos adicionales derivados de aduanas, aranceles locales, DUA o impuestos especiales (como el IGIC o IPSI) correrán íntegramente a cargo del cliente y deberán ser abonados en el momento de la entrega del paquete.</p>
+
+    <h3 style="font-family:Georgia,serif; font-weight:400; font-size:17px; color:var(--ink); margin:26px 0 10px;">4. Formas de pago</h3>
+    <p>El cliente puede elegir entre los siguientes métodos de pago seguros al finalizar su compra:</p>
+    <p>Tarjeta de crédito/débito (a través de pasarela de pago segura).<br>
+    Bizum.<br>
+    PayPal.</p>
+
+    <h3 style="font-family:Georgia,serif; font-weight:400; font-size:17px; color:var(--ink); margin:26px 0 10px;">5. Política de devoluciones y cambios</h3>
+    <p>El cliente dispone de un plazo de 15 días naturales desde la recepción del pedido para solicitar una devolución, bajo las siguientes condiciones:</p>
+    <p>Coste de devolución: El cliente asumirá íntegramente el coste y la gestión de hacer llegar el producto de vuelta a nuestras instalaciones a través de la agencia de transporte de su elección.<br>
+    Exclusiones: No se aceptan devoluciones de artículos adquiridos en rebajas, con cupones de descuento, ofertas o promociones especiales. Estos artículos se consideran venta final.<br>
+    Nuevos envíos (Cambios): Si la devolución se realiza para efectuar un cambio de talla o producto, el cliente deberá abonar un nuevo coste de envío de 5 € para recibir el nuevo artículo.<br>
+    Estado del producto: El artículo debe estar sin usar, en perfectas condiciones y en su embalaje original.</p>
+
+    <h3 style="font-family:Georgia,serif; font-weight:400; font-size:17px; color:var(--ink); margin:26px 0 10px;">6. Incidencias y reclamaciones</h3>
+    <p>Si el pedido llega dañado, incompleto, es erróneo o presenta cualquier tipo de desperfecto, el cliente deberá comunicarlo inmediatamente a nuestro servicio de atención al cliente a través de las siguientes vías:</p>
+    <p>Teléfono / WhatsApp: 640 90 73 26<br>
+    Email: tuyyoboutique2@gmail.com</p>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="flex-direction:column; gap:22px;">
+    <img src="tuyyo-cabecera.jpg" alt="Tú y Yo Boutique" style="max-width:420px; width:100%; height:auto;">
+  </div>
+  <div class="wrap">
+    <div class="fnote">© 2026 Tú y Yo Boutique</div>
+    <div class="foot-links">
+      <a href="#envios">Envíos</a>
+      <a href="#devoluciones">Devoluciones</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#terminos">Términos y condiciones</a>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h3>Tu bolsa</h3>
+    <button id="close-cart" onclick="toggleCart(false)">×</button>
+  </div>
+  <div class="drawer-items" id="drawer-items"></div>
+  <div class="drawer-foot">
+    <div class="total-row"><span>Total</span><span id="cart-total">0,00 €</span></div>
+    <button class="checkout-btn" onclick="checkout()">Finalizar compra</button>
+    <div class="demo-flag">Pasarela de pago simulada — demo de propuesta</div>
+  </div>
+</aside>
+
+<div class="video-overlay" id="video-overlay" onclick="closeVideoOnBg(event)">
+  <div class="video-modal">
+    <button class="close-video" onclick="toggleVideo(false)">×</button>
+    <video id="video-player" controls playsinline style="width:100%; height:100%; object-fit:cover;"></video>
+  </div>
+</div>
+
+<div class="video-overlay" id="image-overlay" onclick="closeImageOnBg(event)">
+  <div style="max-width:min(600px,92vw); max-height:88vh; position:relative;">
+    <button class="close-video" onclick="toggleImage(false)">×</button>
+    <img id="image-viewer" src="" alt="" style="max-width:100%; max-height:88vh; display:block; border:1px solid var(--gold-soft);">
+  </div>
+</div>
+
+<script>
+  // Vídeos reales de la boutique. Vacío hasta que se suban los vídeos definitivos.
+  // Formato: { src: 'archivo.mp4', poster: 'miniatura.jpg', label: 'Nombre' }
+  const realVideos = [];
+
+  // ── Catálogo dinámico desde Google Sheets (opcional) ────────────────
+  // Para que el catálogo se actualice solo desde una hoja de cálculo:
+  // 1. Abre la hoja de Google Sheets del catálogo
+  // 2. Archivo → Compartir → Publicar en la web → selecciona la hoja → formato CSV → Publicar
+  // 3. Pega aquí la URL que te da (termina en "output=csv")
+  // Si se deja vacío, la web usa el catálogo de ejemplo de más abajo.
+  const CATALOG_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRu6GP1uBo5aieyJzZX4vbGbVLaQadTxNmnVPKRHGNG5jZUMAnGLlX5EfMxUWvSdm_nFGitcUZZep7T/pub?output=csv';
+
+  // Catálogo real. Se añade solo cuando hay foto real del producto.
+  // TODO Rocío: revisa nombre y precio de estos 3 (puse un valor provisional).
+  let products = [
+    {id:1, cat:"mujer", name:"Vestido Galicia — Caldera",    desc:"Talla única (36-46/48)", price:19.95, photo:"vestido-ondas-teja.jpg"},
+    {id:2, cat:"mujer", name:"Vestido Galicia — Pistacho", desc:"Talla única (36-46/48)", price:19.95, photo:"vestido-ondas-oliva.jpg"},
+    {id:3, cat:"mujer", name:"Vestido Galicia — Burdeos", desc:"Talla única (36-46/48)", price:19.95, photo:"vestido-ondas-granate.jpg"},
+    {id:4, cat:"mujer", name:"Vestido Canarias — Burdeos", desc:"Lycra fría. Talla única (34/48)", price:21.95, photo:"vestido-granate-bordado.jpg"},
+    {id:5, cat:"mujer", name:"Vestido Canarias — Rosa",    desc:"Lycra fría. Talla única (34/48)", price:21.95, photo:"vestido-canarias-rosa.jpg"},
+    {id:6, cat:"mujer", name:"Vestido Carmina — Caldera",  desc:"Talla única (36/46-48)", price:21.95, photo:"vestido-carmina-caldera.jpg"},
+    {id:7, cat:"mujer", name:"Vestido Carmina — Verde",    desc:"Talla única (36/46-48)", price:21.95, photo:"vestido-carmina-verde.jpg"},
+    {id:8, cat:"mujer", name:"Vestido Venecia — Mandarina",desc:"Talla única (34/46)", price:19.95, photo:"vestido-venecia-mandarina.jpg"},
+    {id:9, cat:"mujer", name:"Vestido Venecia — Burdeos",  desc:"Talla única (34/46)", price:19.95, photo:"vestido-venecia-burdeos.jpg"},
+    {id:10, cat:"mujer", name:"Vestido Venecia — Chocolate",desc:"Talla única (34/46)", price:19.95, photo:"vestido-venecia-chocolate.jpg"},
+  ];
+
+  // Parser CSV sencillo: soporta campos entre comillas con comas dentro
+  function parseCSV(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for(let i=0; i<text.length; i++){
+      const c = text[i], next = text[i+1];
+      if(inQuotes){
+        if(c === '"' && next === '"'){ field += '"'; i++; }
+        else if(c === '"'){ inQuotes = false; }
+        else { field += c; }
+      } else {
+        if(c === '"'){ inQuotes = true; }
+        else if(c === ','){ row.push(field); field = ''; }
+        else if(c === '\n' || c === '\r'){
+          if(field !== '' || row.length){ row.push(field); rows.push(row); }
+          field = ''; row = [];
+          if(c === '\r' && next === '\n') i++;
+        } else { field += c; }
+      }
+    }
+    if(field !== '' || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => r.length && r.some(v => v.trim() !== ''));
+  }
+
+  async function loadProductsFromSheet(){
+    if(!CATALOG_CSV_URL) return; // sin hoja configurada, se queda con el catálogo de ejemplo
+    try{
+      const res = await fetch(CATALOG_CSV_URL);
+      const text = await res.text();
+      const rows = parseCSV(text);
+      const header = rows[0].map(h => h.trim().toLowerCase());
+      const idx = {
+        nombre: header.indexOf('nombre'),
+        categoria: header.indexOf('categoría') !== -1 ? header.indexOf('categoría') : header.indexOf('categoria'),
+        precio: header.indexOf('precio'),
+        tallas: header.indexOf('tallas'),
+        stock: header.indexOf('stock'),
+        foto: header.indexOf('foto'),
+        descripcion: header.indexOf('descripción') !== -1 ? header.indexOf('descripción') : header.indexOf('descripcion'),
+        activo: header.indexOf('activo'),
+        video: header.indexOf('video_url'),
+      };
+      const loaded = rows.slice(1).map((r, i) => ({
+        id: i + 1,
+        cat: (r[idx.categoria] || 'mujer').trim().toLowerCase(),
+        name: r[idx.nombre] || 'Producto',
+        desc: r[idx.descripcion] || '',
+        price: parseFloat((r[idx.precio] || '0').replace(',', '.')) || 0,
+        tallas: r[idx.tallas] || '',
+        stock: parseInt(r[idx.stock], 10),
+        color: '#B4863A',
+        photo: (r[idx.foto] || '').trim() || null,
+        videoUrl: (r[idx.video] || '').trim() || null,
+        activo: idx.activo === -1 ? true : (r[idx.activo] || '').trim().toUpperCase() !== 'NO',
+      })).filter(p => p.name && p.name !== 'Producto' && p.activo);
+
+      if(loaded.length){
+        products = loaded;
+        renderProducts('todos');
+      }
+    } catch(err){
+      console.warn('No se pudo cargar el catálogo desde Google Sheets, se usa el de ejemplo.', err);
+    }
+  }
+
+  const grid = document.getElementById('product-grid');
+  function renderProducts(filter){
+    grid.innerHTML = '';
+    products.filter(p => filter==='todos' || p.cat===filter).forEach(p => {
+      const hasRealVideo = realVideos.length > 0;
+      const videoIndex = hasRealVideo ? (p.id - 1) % realVideos.length : -1;
+      const cover = p.photo || (hasRealVideo ? realVideos[videoIndex].poster : '');
+      const canPlay = !!(p.videoUrl || hasRealVideo);
+      const openClick = p.videoUrl
+        ? `openVideoSrc('${p.videoUrl}', ${p.photo ? `'${p.photo}'` : 'null'})`
+        : (hasRealVideo ? `openRealVideo(${videoIndex})` : `openImage('${cover}', '${p.name.replace(/'/g, "\\'")}')`);
+      grid.innerHTML += `
+        <div class="card">
+          <div class="swatch" style="cursor:pointer;" onclick="${openClick}">
+            <img src="${cover}" alt="${p.name}" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <span class="cat-badge">${p.cat}</span>
+            ${canPlay ? `<div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(28,26,22,0); transition:background .15s;" onmouseover="this.style.background='rgba(28,26,22,.15)'" onmouseout="this.style.background='rgba(28,26,22,0)'">
+              <span style="width:40px; height:40px; border-radius:50%; background:rgba(255,254,251,.92); display:flex; align-items:center; justify-content:center; color:var(--ink); font-size:14px;">▶</span>
+            </div>` : ''}
+          </div>
+          <div class="card-info">
+            <div class="pname">${p.name}</div>
+            <div class="pdesc sans">${p.desc}</div>
+            <div class="price-row">
+              <span class="price">${p.price.toFixed(2).replace('.',',')} €</span>
+              <button class="add-btn" onclick="addToCart(${p.id})">Añadir</button>
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+  function filterCat(cat, el){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    renderProducts(cat);
+  }
+  renderProducts('todos');
+  loadProductsFromSheet();
+
+  let cart = [];
+  function addToCart(id){
+    const p = products.find(x=>x.id===id);
+    cart.push(p);
+    renderCart();
+    toggleCart(true);
+  }
+  function removeFromCart(index){ cart.splice(index,1); renderCart(); }
+  function renderCart(){
+    const container = document.getElementById('drawer-items');
+    document.getElementById('cart-count').textContent = cart.length;
+    if(cart.length === 0){
+      container.innerHTML = '<div class="drawer-empty">Tu bolsa está vacía.<br>Añade alguna prenda de la colección.</div>';
+    } else {
+      container.innerHTML = cart.map((p,i)=>`
+        <div class="drawer-item">
+          <div class="mini-swatch" style="background:${p.color};">${p.name.split(' ')[1] ? p.name.split(' ')[1][0] : p.name[0]}</div>
+          <div class="drawer-item-info">
+            <div class="n">${p.name}</div>
+            <div class="p">${p.price.toFixed(2).replace('.',',')} €</div>
+            <button class="remove" onclick="removeFromCart(${i})">Quitar</button>
+          </div>
+        </div>`).join('');
+    }
+    const total = cart.reduce((s,p)=>s+p.price,0);
+    document.getElementById('cart-total').textContent = total.toFixed(2).replace('.',',') + ' €';
+  }
+  function toggleCart(open){
+    document.getElementById('drawer').classList.toggle('open', open);
+    document.getElementById('overlay').classList.toggle('open', open);
+  }
+  function checkout(){
+    if(cart.length===0){ alert('Tu bolsa está vacía.'); return; }
+    alert('Demo: aquí se conectaría una pasarela real (Stripe/PayPal) para procesar el pago de ' + document.getElementById('cart-total').textContent);
+  }
+  renderCart();
+
+  function openRealVideo(index){
+    const v = realVideos[index];
+    openVideoSrc(v.src, v.poster);
+  }
+  function openVideoSrc(src, poster){
+    const player = document.getElementById('video-player');
+    player.src = src;
+    player.poster = poster || '';
+    toggleVideo(true);
+    player.play().catch(()=>{});
+  }
+  function toggleVideo(open){
+    document.getElementById('video-overlay').classList.toggle('open', open);
+    if(!open){
+      const player = document.getElementById('video-player');
+      player.pause();
+      player.currentTime = 0;
+    }
+  }
+  function closeVideoOnBg(e){
+    if(e.target.id === 'video-overlay') toggleVideo(false);
+  }
+
+  function openImage(src, alt){
+    const viewer = document.getElementById('image-viewer');
+    viewer.src = src;
+    viewer.alt = alt || '';
+    toggleImage(true);
+  }
+  function toggleImage(open){
+    document.getElementById('image-overlay').classList.toggle('open', open);
+  }
+  function closeImageOnBg(e){
+    if(e.target.id === 'image-overlay') toggleImage(false);
+  }
+</script>
+
+</body>
+</html>
